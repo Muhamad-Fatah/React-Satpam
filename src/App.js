@@ -5,6 +5,7 @@ import { useCookies } from "react-cookie"
 // Import Pages
 import Login from "./pages/Login"
 import Home from "./pages/Home"
+import ProtectedRoutes from "./ProtectedRouter"
 import DataTables from "./components/DataTables"
 
 const App = () => {
@@ -15,9 +16,11 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/tables" element={<DataTables />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/tables" element={<DataTables />} />
+        </Route>
       </Routes>
     </Router>
   )
